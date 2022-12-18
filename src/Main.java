@@ -1,19 +1,21 @@
 import java.time.LocalDate;
 
 public class Main {
+
     public static void main(String[] args) {
         task1();
         task2();
         task3();
     }
-    public static void isLeapYear(int year) {
 
-        if (year % 4 == 0 || year % 400 == 0 && year / 100 != 0) {
+    public static void printLeapYear(int year) {
+
+        if (year % 4 == 0 || year % 400 == 0 && year % 100 != 0) {
             System.out.println(year + " год является високосным.");
         } else {
-            System.out.println(year + " не год является високосным.");
+            System.out.println(year + " год не является високосным.");
         }
-    }
+    } //проверка на високосный год
 
     public static void installApp(int clientDeviceYear, int clientOs) {
 
@@ -30,23 +32,23 @@ public class Main {
                 System.out.println("Установите версию приложения для Android по ссылке.");
             }
         }
-    }
+    } //метод какую версию приложения установить
 
-    public static void howMuchDays (int deliveryDistance) {
+    public static int howMuchDays (int deliveryDistance) {
+
         int daysDelivery;
+
         if (deliveryDistance <= 20) {
             daysDelivery = 1;
-            System.out.println("Потребуются дней: " + daysDelivery + " сутки.");
         } else if (deliveryDistance > 20 && deliveryDistance <= 60) {
             daysDelivery = 2;
-            System.out.println("Потребуются дней: " + daysDelivery+ ".");
-        } else if (deliveryDistance > 60 && deliveryDistance <= 100) {
+            } else if (deliveryDistance > 60 && deliveryDistance <= 100) {
             daysDelivery = 3;
-            System.out.println("Потребуются дней: " + daysDelivery+ ".");
-        } else {
-            System.out.println("Свыше ста километров доставки нет.");
-        }
-    }
+            } else {
+            daysDelivery = -1;
+            }
+        return daysDelivery;
+    } //конвертация километры в сутки
 
     public static int[] generateRandomArray() {
         java.util.Random random = new java.util.Random();
@@ -55,7 +57,16 @@ public class Main {
             arr[i] = random.nextInt(101) + 1;
         }
         return arr;
-    }
+    } // рандомный массив километров
+
+    public static int[] generateRandomYear() {
+        java.util.Random random = new java.util.Random();
+        int[] arr = new int[100];
+        for (int i = 0; i < arr.length; i++) {
+            arr[i] = random.nextInt(2102) + 1;
+        }
+        return arr;
+    } // рандомный год метод
 
     public static void task1() {
 
@@ -65,8 +76,9 @@ public class Main {
 
         System.out.println("\nЗадача_1:");
 
-        int year = 2024;
-        isLeapYear(year);
+        int year = generateRandomYear()[44];
+
+        printLeapYear(year);
     } //done
 
     public static void task2() {
@@ -96,7 +108,12 @@ public class Main {
         System.out.println("\nЗадача_3:");
 
         int deliveryDistance = generateRandomArray()[0];
-        howMuchDays(deliveryDistance);
-    } //done
+        int daysDelivery = howMuchDays(deliveryDistance);
 
+            if (daysDelivery <= 3 && daysDelivery != -1) {
+            System.out.println("Потребуется дней для доставки: " + daysDelivery + ".");
+            } else {
+            System.out.println("Доставка невозможна.");
+            }
+    } //done
 }
