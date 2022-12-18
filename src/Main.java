@@ -20,13 +20,13 @@ public class Main {
     public static void installApp(int clientDeviceYear, int clientOs) {
 
         if (clientOs == 0) {
-            if (clientDeviceYear < 2015) {
+            if (clientDeviceYear < LocalDate.now().getYear()) {
                 System.out.println("Установите облегченную версию приложения для iOS по ссылке.");
             } else {
                 System.out.println("Установите версию приложения для iOS по ссылке.");
             }
         } else {
-            if (clientDeviceYear < 2015) {
+            if (clientDeviceYear < LocalDate.now().getYear()) {
                 System.out.println("Установите облегченную версию приложения для Android по ссылке.");
             } else {
                 System.out.println("Установите версию приложения для Android по ссылке.");
